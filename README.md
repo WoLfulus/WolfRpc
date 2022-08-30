@@ -1,5 +1,7 @@
 # WolfRpc
 
+Even though it has RPC in the name, this isn't that **remote** since transport is not something I'm worried about. If service calls can be dispatched from a serialized payload and results are serialized with caller identification, the transport is just a detail.
+
 ## Goals
 
 - [ ] Everything must be async by default
