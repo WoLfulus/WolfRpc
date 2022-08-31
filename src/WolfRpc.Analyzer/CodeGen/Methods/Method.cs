@@ -48,9 +48,9 @@ public class Method : SourceBlock
         }
         else if (Modifiers.HasFlag(Modifier.Virtual) && Body == "")
         {
-            return $"{declaration}\n{{\n\tthrow new NotImplementedException();\n}}";
+            return $"{declaration}\r\n{{\r\n    throw new NotImplementedException();\r\n}}";
         }
-        return $"{declaration}\n{{\n{SourceString.Indent(Body, 1)}\n}}";
+        return $"{declaration}\r\n{{\r\n{SourceString.Indent(Body, 1)}\n}}";
     }
 
     public string ToSwitchCall(string variable)

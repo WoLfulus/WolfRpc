@@ -11,7 +11,7 @@ public abstract class SourceBlock : ISourceBlock
     
     public virtual string ToSource(int indent = 0)
     {
-        return SourceString.Indent(this.ToSource(), indent, '\t');
+        return SourceString.Indent(this.ToSource(), indent, "    ");
     }
 
     public override string ToString()

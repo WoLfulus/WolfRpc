@@ -26,6 +26,18 @@ public class ServiceHandler : SourceBlock
         }
     }
 
+    public string FileName
+    {
+        get
+        {
+            if (Namespace != "")
+            {
+                return Namespace + "." + Name + "." + CleanName + "Handler.g.cs";
+            }
+            return Name + "." + CleanName + "Handler.g.cs";
+        }
+    }
+    
     public string CleanName
     {
         get
@@ -54,17 +66,17 @@ public class ServiceHandler : SourceBlock
 
     private string GenerateImports()
     {
-        return String.Join("\n", Namespaces.Select(ns => $"using {ns};").ToArray());
+        return String.Join("\r\n", Namespaces.Select(ns => $"using {ns};").ToArray());
     }
 
     private string GenerateNamespaceBegin()
     {
-        return Namespace == "" ? "Generated" : $"namespace {Namespace}.Generated\n{{";
+        return Namespace == "" ? "Generated" : $"namespace {Namespace}.Generated\r\n{{";
     }
 
     private string GenerateNamespaceEnd()
     {
-        return "}\n";
+        return "}\r\n";
     }
 
     public override string ToSource()

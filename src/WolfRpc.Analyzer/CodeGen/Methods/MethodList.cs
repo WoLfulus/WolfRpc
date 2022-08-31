@@ -32,16 +32,16 @@ public class MethodList : SourceBlock
 
     public override string ToSource()
     {
-        return SourceString.JoinWith("\n\n", Methods.Select(method => method.ToSource()).ToArray());
+        return SourceString.JoinWith("\r\n\r\n", Methods.Select(method => method.ToSource()).ToArray());
     }
 
     public string ToSwitchCall(string variable, int indent)
     {
-        return SourceString.Indent(SourceString.JoinWith("\n", Methods.Select(method => method.ToSwitchCall(variable)).ToArray()), indent);
+        return SourceString.Indent(SourceString.JoinWith(",\r\n", Methods.Select(method => method.ToSwitchCall(variable)).ToArray()), indent);
     }
 
     public string ToValidateArgumentCount(string variable, int indent)
     {
-        return SourceString.Indent(SourceString.JoinWith("\n", Methods.Select(method => $"{method.Hash} => {variable} == {method.Arguments.Arguments.Count}").ToArray()), indent);
+        return SourceString.Indent(SourceString.JoinWith(",\r\n", Methods.Select(method => $"{method.Hash} => {variable} == {method.Arguments.Arguments.Count}").ToArray()), indent);
     }
 }

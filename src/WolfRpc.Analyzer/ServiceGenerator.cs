@@ -1,4 +1,7 @@
-﻿using Microsoft.CodeAnalysis;
+﻿using System.Text;
+
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.Text;
 
 namespace WolfRpc.Analyzer;
 
@@ -15,7 +18,7 @@ public class ServiceGenerator : ISourceGenerator
         var data = context.SyntaxContextReceiver as ServiceGeneratorData;
         foreach (var service in data!.ServiceHandlers)
         {
-            context.AddSource($"{service.Name}.g.cs", service.ToSource());
+            context.AddSource($"{service.FileName}", SourceText.From(service.ToSource(), Encoding.UTF8, SourceHashAlgorithm.Sha256));
         }
     }
 }

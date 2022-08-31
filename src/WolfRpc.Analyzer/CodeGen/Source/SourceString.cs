@@ -41,11 +41,11 @@ public static class SourceString
         return Join(blocks, separator);
     }
 
-    public static string Indent(string content, int size = 0, char with = '\t')
+    public static string Indent(string content, int size = 0, string with = "    ")
     {
         var lines = content.Split('\n');
-        var tab = new string(with, size);
-
-        return tab + Join(lines, tab);
+        var tab = String.Join("", Enumerable.Range(0, size).Select(_ => with).ToArray());
+        var indented = tab + Join(lines, '\n' + tab);
+        return String.Join("\r\n", indented.Split('\n').Select(line => line.TrimEnd()).ToArray());
     }
 }
